@@ -1,0 +1,17 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowRight, ArrowUpRight, ScanSearch, Scale, PackageCheck } from 'lucide-react';
+import { ResearchShell, ShelfDiagram } from '@/components/research/research-shell';
+import { researchDate, workflow } from '@/lib/research';
+
+export const metadata: Metadata = { title: 'Research journal | Trovio', description: 'Visual product research, transparent assumptions and practical launch decisions. Start with the gas stove shelf feasibility study.' };
+
+export default function ResearchIndex() {
+  return <ResearchShell><div className="journal-width">
+    <section className="journal-intro"><div className="eyebrow"><span className="tiny-dot"/> THE TROVIO RESEARCH JOURNAL</div><h1>Good products begin<br/>with <em>better questions.</em></h1><p>Our research, opened up. Clear market evidence, honest cost models and the decisions behind what we build next.</p><div className="intro-meta"><span>01 research study</span><span>Amazon US</span><span>Updated {researchDate}</span></div></section>
+    <section aria-labelledby="featured-study"><div className="section-mini"><h2 id="featured-study">LATEST FIELD NOTES</h2><span>STUDY 001</span></div><Link href="/research/gas-stove-shelf" className="featured-study"><div className="featured-art"><div className="art-label">KITCHEN / STORAGE</div><ShelfDiagram/><span className="art-caption">Concept diagram · dimensions and safety not validated</span></div><div className="featured-copy"><span className="status-pill">In validation</span><h2>The gas stove shelf.<br/>Does the price make sense?</h2><p>A closer look at the $49.99–$54.99 test range, the keywords worth investigating and the costs that can change the verdict.</p><div className="feature-tags"><span>Price model</span><span>Keyword map</span><span>Market check</span></div><span className="read-study">Read the research <ArrowUpRight size={19}/></span></div></Link></section>
+    <section className="research-principles"><div><ScanSearch/><h3>Demand before preference</h3><p>Find a real buying problem before choosing a product or material.</p></div><div><Scale/><h3>Every candidate, same test</h3><p>Acacia gets no special treatment. Margin, entry difficulty and usability decide.</p></div><div><PackageCheck/><h3>Practical to launch</h3><p>Shipping, sourcing, returns and budget matter as much as search volume.</p></div></section>
+    <section id="workflow" className="workflow-section"><div className="eyebrow">A REPEATABLE PROCESS</div><h2>From interesting idea<br/>to a decision we can explain.</h2><p className="section-lead">Six steps. One evidence trail. A product can be advanced, parked or rejected at any stage.</p><ol className="workflow-grid">{workflow.map((s,i)=><li key={s.title}><span className="step-no">0{i+1}</span><h3>{s.title}</h3><p>{s.detail}</p></li>)}</ol><div className="method-note"><strong>The selection rule</strong><p>Compare wood, bamboo, metal and other suitable materials. Start with simple, non-fragile, evergreen products. Prefer small/standard parcels, low MOQs and demonstrable sales among less-established competitors. High demand alone does not mean an easy market.</p></div></section>
+    <section className="journal-next"><div><span className="eyebrow">FIRST UP</span><h2>One shelf. All the important questions.</h2></div><Link className="journal-button" href="/research/gas-stove-shelf">Open study <ArrowRight size={17}/></Link></section>
+  </div></ResearchShell>;
+}
