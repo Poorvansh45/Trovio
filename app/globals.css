@@ -1,0 +1,172 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   TROVIO DESIGN TOKENS
+   Premium, minimal, AI-first. White canvas, indigo/violet
+   intelligence accent, warm amber reserved for "winning" moments.
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --color-bg: #ffffff;
+  --color-bg-soft: #f9f9fc;
+  --color-bg-soft-2: #f4f3fb;
+  --color-bg-inverse: #0b0b0f;
+
+  /* Ink */
+  --color-ink: #0b0b0f;
+  --color-ink-secondary: #52525b;
+  --color-ink-tertiary: #8f8f9a;
+  --color-ink-inverse: #fafafa;
+
+  /* Borders */
+  --color-border: #e8e8ee;
+  --color-border-soft: #f1f1f5;
+
+  /* Brand — intelligence indigo/violet */
+  --color-primary: #4f46e5;
+  --color-primary-600: #4338ca;
+  --color-primary-700: #3730a3;
+  --color-primary-soft: #eef0ff;
+  --color-violet: #7c3aed;
+  --color-sky: #0ea5e9;
+
+  /* Signal — used sparingly */
+  --color-amber: #d97706;
+  --color-amber-soft: #fef3e2;
+  --color-emerald: #0f9d63;
+  --color-emerald-soft: #eafaf3;
+
+  /* Shadows (colored, soft — Linear/Stripe style) */
+  --shadow-color: 234 22% 15%;
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-bg-soft: var(--color-bg-soft);
+  --color-bg-soft-2: var(--color-bg-soft-2);
+  --color-bg-inverse: var(--color-bg-inverse);
+
+  --color-ink: var(--color-ink);
+  --color-ink-secondary: var(--color-ink-secondary);
+  --color-ink-tertiary: var(--color-ink-tertiary);
+  --color-ink-inverse: var(--color-ink-inverse);
+
+  --color-border: var(--color-border);
+  --color-border-soft: var(--color-border-soft);
+
+  --color-primary: var(--color-primary);
+  --color-primary-600: var(--color-primary-600);
+  --color-primary-700: var(--color-primary-700);
+  --color-primary-soft: var(--color-primary-soft);
+  --color-violet: var(--color-violet);
+  --color-sky: var(--color-sky);
+
+  --color-amber: var(--color-amber);
+  --color-amber-soft: var(--color-amber-soft);
+  --color-emerald: var(--color-emerald);
+  --color-emerald-soft: var(--color-emerald-soft);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+
+  --shadow-soft: 0 1px 2px rgba(11, 11, 15, 0.04), 0 8px 24px -8px rgba(11, 11, 15, 0.08);
+  --shadow-card: 0 1px 1px rgba(11, 11, 15, 0.03), 0 2px 8px rgba(11, 11, 15, 0.04),
+    0 16px 40px -16px rgba(79, 70, 229, 0.14);
+  --shadow-glow: 0 0 0 1px rgba(79, 70, 229, 0.06), 0 24px 48px -12px rgba(79, 70, 229, 0.22);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-drift: drift 18s ease-in-out infinite;
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(3%, -4%) scale(1.05);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Must stay in `base`: unlayered rules outrank Tailwind's `utilities` layer whatever
+   their specificity, so an unlayered `*` here would silently beat every `border-*`
+   utility on the site. */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings:
+    'ss01' on,
+    'cv01' on;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Fine dot-grid texture used behind the hero and CTA */
+.bg-dot-grid {
+  background-image: radial-gradient(circle, rgba(11, 11, 15, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.bg-dot-grid-inverse {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Gradient text used sparingly for one emphasis word */
+.text-gradient {
+  background-image: linear-gradient(100deg, var(--color-primary) 0%, var(--color-violet) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft radial mesh blob — no images required */
+.mesh-blob {
+  filter: blur(64px);
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
