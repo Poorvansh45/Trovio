@@ -7,6 +7,7 @@ import { AIShowcase } from "@/components/landing/ai-showcase";
 import { Pricing } from "@/components/landing/pricing";
 import { FAQ } from "@/components/landing/faq";
 import { Footer } from "@/components/landing/footer";
+import { ResearchPreview } from "@/components/landing/research-preview";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <Features />
         <HowItWorks />
         <AIShowcase />
+        <ResearchPreview />
         <Pricing />
         <FAQ />
       </main>
